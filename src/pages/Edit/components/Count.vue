@@ -1,5 +1,5 @@
 <template>
-  <div class="countContainer" :class="{ isDark: isDark }">
+  <div class="countContainer" :class="{ isDark: isDark }" v-if="!isReadonly">
     <div class="item">
       <span class="name">{{ $t('count.words') }}</span>
       <span class="value">{{ words }}</span>
@@ -34,7 +34,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['isDark'])
+    ...mapState(['isDark', 'isReadonly'])
   },
   created() {
     bus.on('data_change', this.onDataChange)
@@ -57,6 +57,7 @@ export default {
       this.walk(data)
       countEl.innerHTML = this.textStr
       this.words = countEl.textContent.length
+      sessionStorage.setItem('SIMPLE_MIND_MAP_WORD', this.words)
     },
     /**
      * @Author: 黄原寅

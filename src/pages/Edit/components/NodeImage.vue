@@ -50,7 +50,6 @@ onBeforeMount(() => {
 
 const handleNodeActive = args => {
   activeNodes.value = [...args[1]]
-  console.log(`output->activeNodes.value`, activeNodes.value)
 }
 
 const handleShowNodeImage = () => {
